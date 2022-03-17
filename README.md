@@ -13,7 +13,7 @@ ___
 This package can be used for getting some important data like **price, currency, name** from various famous websites like **Amazon, Steam, Nintendo etc.**
 
 ## Example code snippet
-
+### Code:
 ```js
 import getPrice from "eshop-scraper";
 
@@ -25,7 +25,7 @@ const config_params = {
   console.log(res)
 })()
 ```
-## Output
+### Output:
 
 ```js
 {
