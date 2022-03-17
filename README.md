@@ -1,8 +1,8 @@
-# Eshop Scraper (eShop-scraper)
+# Eshop Scraper (eshop-scraper)
 
 **Eshop Scraper is a npm package.**
 ```txt 
-npm i eshop-scraper -S
+npm i eshop-scraper
 ```
 ___
 This package is under heavy development process but you can use it in your local projects but don't use it in production for now. Sorry for incovience 🙏
