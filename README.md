@@ -2,7 +2,7 @@
 
 **Eshop Scraper is a npm package.**
 ```txt 
-npm i eShop-scraper -S
+npm i eshop-scraper -S
 ```
 
 
@@ -13,7 +13,7 @@ This package can be used for getting some important data like **price, currency,
 ## Example code snippet
 
 ```js
-import getPrice from "eShop-scraper";
+import getPrice from "eshop-scraper";
 
 const config_params = {
   currency: "EUR" // currently supports only "currency" option
