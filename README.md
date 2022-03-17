@@ -4,7 +4,9 @@
 ```txt 
 npm i eshop-scraper -S
 ```
-
+___
+This package is under heavy development process but you can use it in your local projects but don't use it in production for now. Sorry for incovience 🙏
+___
 
 ## What is does (in short)
 
