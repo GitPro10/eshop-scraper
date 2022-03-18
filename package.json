@@ -1,6 +1,6 @@
 {
   "name": "eshop-scraper",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A simple package to get some data from a e-shop using web-scraping",
   "main": "main.js",
   "scripts": {
@@ -26,9 +26,9 @@
     "url": "https://github.com/GitPro10/eshop-scraper.git"
   },
   "engines": {
-		"node": "^17.5.0",
-		"npm": "^8.5.2"
-	},
+    "node": "^17.5.0",
+    "npm": "^8.5.2"
+  },
   "keywords": [
     "price finder",
     "web scrap",
