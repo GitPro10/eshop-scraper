@@ -1,5 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
+import fetch from "node-fetch";
+
 import titleCase from "./utils/titleCase.js" // function used for title case the product name
 import {
   JSDOM
@@ -10,7 +12,7 @@ import {
   setHeader
 } from "./utils/headers.js" // function for setting axios headers
 import separatePriceAndCurrency from "./utils/separator.js" // function used for separating price and currency from a string
-import fetch from "node-fetch";
+import webs from "./webs.js" // list of all websites with their properties
 
 
 function isObject(val) {
@@ -28,158 +30,6 @@ async function getPriceConverted(price, baseCode, code) {
     converted_to_country_code: code
   }
 }
-
-// supported web links list
-let othoba_link = "othoba.com";
-let steam_link = "store.steampowered.com";
-let amazon_link = "amazon.com"
-let walmart_link = "walmart.com"
-let nintendo_link = "nintendo.com"
-let crutchfield_link = "crutchfield.com"
-let playstation_link = "store.playstation.com"
-let priceminister_link = "fr.shopping.rakuten.com"
-let ebay_link = "ebay.com"
-let ebags_link = "ebags.com"
-let bikroy_link = "bikroy.com"
-
-// web datas (hardcoded data for every web) like selector, siteName etc.
-const webs = {
-  othoba: {
-    uri: othoba_link,
-    site: "Othoba",
-    selector: {
-      price: [
-        'span[itemprop="price"]'
-      ],
-      name: [
-        'h1[itemprop="name"]'
-      ]
-    },
-  },
-  steam: {
-    uri: steam_link,
-    site: "Steam",
-    selector: {
-      price: [
-        'div.game_purchase_price',
-        'div.discount_final_price'
-      ],
-      name: [
-        'div#appHubAppName_responsive'
-      ]
-    }
-  },
-  amazon: {
-    uri: amazon_link,
-    site: "Amazon",
-    selector: {
-      price: [
-        'span.a-price span.a-offscreen'
-      ],
-      name: [
-        '#title'
-      ]
-    }
-  },
-  walmart: {
-    uri: walmart_link,
-    site: "Walmart",
-    selector: {
-      price: [
-        'span[itemprop="price"]'
-      ],
-      name: [
-        'h1[itemprop="name"]'
-      ]
-    }
-  },
-  nintendo: {
-    uri: nintendo_link,
-    site: "Nintendo",
-    selector: {
-      price: [
-        'span.klmBHV'
-      ],
-      name: [
-        'h1.HUGKw'
-      ]
-    }
-  },
-  crutchfield: {
-    uri: crutchfield_link,
-    site: "Crutchfield",
-    selector: {
-      price: [
-        'div.price.js-price'
-      ],
-      name: [
-        'h1.prod-title'
-      ]
-    }
-  },
-  playstation: {
-    uri: playstation_link,
-    site: "PlayStation",
-    selector: {
-      price: [
-        'span.psw-t-title-m'
-      ],
-      name: [
-        'h1[data-qa="mfe-game-title#name"]'
-      ]
-    }
-  },
-  priceminister: {
-    uri: priceminister_link,
-    site: "PriceMinister",
-    selector: {
-      price: [
-        'span.price'
-      ],
-      name: [
-        'h1'
-      ]
-    }
-  },
-  ebay: {
-    uri: ebay_link,
-    site: "E-Bay",
-    selector: {
-      price: [
-        'div.display-price',
-        //'span.vi-bin-primary-price__main-price'
-      ],
-      name: [
-        'h1.product-title',
-        //'h1[itemprop="name"]'
-      ]
-    }
-  },
-  ebags: {
-    uri: ebags_link,
-    site: "E-Bags",
-    selector: {
-      price: [
-        'span.price-current'
-      ],
-      name: [
-        'h1[itemprop="name"]'
-      ]
-    }
-  },
-  bikroy: {
-    uri: bikroy_link,
-    site: "Bikroy.com",
-    selector: {
-      price: [
-        'div.amount--3NTpl'
-      ],
-      name: [
-        'h1.title--3s1R8'
-      ]
-    }
-  },
-};
 
 // get the data based on the product "link"
 function siteProps(link) {
@@ -212,19 +62,11 @@ function siteProps(link) {
     }
   }
 }
-export default async function getData(link, options) {
+export default async function getData(link, transform_country_code) {
   try {
-    var currencyCode;
-    // options handling
-    if (options) {
-      if (isObject(options)) {
-        currencyCode = options.currency || null
-      } else {
-        throw new Error("Options parameter must be an Object")
-      }
-    } else {
-      currencyCode = null
-    }
+    
+    // currency code for converting
+    var currencyCode = transform_country_code || null
 
     const propsData = siteProps(link) // receive all returned data in a variable
     const {

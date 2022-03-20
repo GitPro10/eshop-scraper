@@ -5,7 +5,15 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "test": "echo \"Error: no test specified\""
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      }
+    }
   },
   "bin": "./main.js",
   "type": "module",
@@ -15,7 +23,7 @@
     "axios": "^0.26.0",
     "jsdom": "^19.0.0",
     "lodash": "^4.17.21",
-    "node-fetch": "^3.2.3"
+    "node-fetch": "^2.5.12"
   },
   "bugs": {
     "url": "https://github.com/GitPro10/eshop-scraper/issues"
@@ -25,15 +33,20 @@
     "type": "git",
     "url": "https://github.com/GitPro10/eshop-scraper.git"
   },
-  "engines": {
-    "node": "^17.5.0",
-    "npm": "^8.5.2"
-  },
   "keywords": [
-    "price finder",
-    "web scrap",
+    "price-finder",
+    "web-scrap",
     "eshop",
     "amazon",
-    "nintendo"
-  ]
+    "nintendo",
+    "walmart",
+    "price-fetcher",
+    "data-fetcher",
+    "website-data-fetcher",
+    "e-shop"
+  ],
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.7",
+    "jest": "^27.5.1"
+  }
 }
