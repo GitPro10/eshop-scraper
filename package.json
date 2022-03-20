@@ -1,6 +1,6 @@
 {
   "name": "eshop-scraper",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "A simple package to get some data from a e-shop using web-scraping",
   "main": "main.js",
   "scripts": {
@@ -11,7 +11,9 @@
   "babel": {
     "env": {
       "test": {
-        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
       }
     }
   },
