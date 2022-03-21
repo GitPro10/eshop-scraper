@@ -82,8 +82,10 @@ describe("|| SHOULD WORK ALL WEBSITES ||", ()=> {
   testSite(crutchfield, "should fetch price, currency and name of Crutchfield website", crutchfield_expected_currency);
 
   testSite(playstation, "should fetch price, currency and name of PlayStation website", playstation_expected_currency);
+  
   testSite(priceminister, "should fetch price, currency and name of PriceMinister website",
-    priceminister_expected_currency),
+    priceminister_expected_currency);
+    
   testSite(ebay, "should fetch price, currency and name of E-Bay website", ebay_expected_currency);
 
   testSite(ebags, "should fetch price, currency and name of E-Bags website", ebags_expected_currency);
