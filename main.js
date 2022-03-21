@@ -12,7 +12,7 @@ import {
   setHeader
 } from "./utils/headers.js" // function for setting axios headers
 import separatePriceAndCurrency from "./utils/separator.js" // function used for separating price and currency from a string
-import webs from "./webs.js" // list of all websites with their properties
+import webs from "./website_props.js" // list of all websites with their properties
 
 
 function isObject(val) {
@@ -64,10 +64,6 @@ function siteProps(link) {
 }
 export default async function getData(link, transform_country_code) {
   try {
-    
-    // currency code for converting
-    var currencyCode = transform_country_code || null
-
     const propsData = siteProps(link) // receive all returned data in a variable
     const {
       data
@@ -80,16 +76,16 @@ export default async function getData(link, transform_country_code) {
     const price_raw_string = $(dom, propsData.selectors.priceSelector).textContent.toLowerCase().trim() // price and currency raw string
     var price = separatePriceAndCurrency(price_raw_string).price // price filtered
 
-
     var currency = separatePriceAndCurrency(price_raw_string).currency // currency filtered
 
+    // currency code for converting currency
+    var currencyCode = transform_country_code || null
 
-    if (currencyCode != null) {
+    if (currencyCode !== null) {
       const priceandcurrency_coverted = await getPriceConverted(price, currency, currencyCode)
       price = priceandcurrency_coverted.price_converted
       currency = priceandcurrency_coverted.converted_to_country_code
     }
-
 
     if (!$(dom, propsData.selectors.nameSelector)) throw new Error("Unable to get the product name")
 

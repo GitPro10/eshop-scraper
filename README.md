@@ -18,7 +18,7 @@ This package can be used for getting some important data like **price, currency,
 import getPrice from "eshop-scraper";
 
 (async()=> {
-  const res = await getPrice("https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color", "EUR");
+  const res = await getPrice("https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color", "INR");
   console.log(res)
 })()
 ```

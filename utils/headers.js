@@ -1,4 +1,3 @@
-
 // set a random header from "headers" obiect
 const setHeader = array => array[Math.floor(Math.random() * array.length)];
 

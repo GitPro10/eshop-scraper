@@ -5,7 +5,7 @@ Really don't know how this works..
 
 export default function titleCase(str) {
   const splitStr = str.toLowerCase().split(" ");
-  
+
   // exceptions like be, for, with etc.
   const exceptions = [
     'a',
@@ -37,7 +37,7 @@ export default function titleCase(str) {
     'down',
     'off',
     'near'];
-    
+
   const result = splitStr.map(word => {
     const formattedWord = exceptions.indexOf(word) == -1 ?
     word.charAt(0).toUpperCase() + word.substring(1): word;
