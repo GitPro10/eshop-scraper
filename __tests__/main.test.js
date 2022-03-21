@@ -56,7 +56,7 @@ function testSite(link, txt, currencyExpected) {
     expect(currency).toBe(currencyExpected)
     expect(strCheck(name)).toBeTruthy()
 
-    // then-catch data fetching with/only currency conversion
+    // then-catch data fetching test with/only currency conversion
     price_finder(link, countryCode).then(res => {
       const currency_converted = res.currency;
       const price_converted = res.price;
