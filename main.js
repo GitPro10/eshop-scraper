@@ -106,3 +106,5 @@ export default async function getData(link, transform_country_code) {
     }
   }
 }
+
+// end of the main file
