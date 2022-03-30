@@ -2,6 +2,7 @@
 let othoba_link = "othoba.com";
 let steam_link = "store.steampowered.com";
 let amazon_link = "amazon.com"
+let amazon_link_in = "amazon.in"
 let walmart_link = "walmart.com"
 let crutchfield_link = "crutchfield.com"
 let playstation_link = "store.playstation.com"
@@ -39,6 +40,18 @@ const webs = {
   },
   amazon: {
     uri: amazon_link,
+    site: "Amazon",
+    selector: {
+      price: [
+        'span.a-price span.a-offscreen'
+      ],
+      name: [
+        '#title'
+      ]
+    }
+  },
+  amazon_in: {
+    uri: amazon_link_in,
     site: "Amazon",
     selector: {
       price: [
@@ -103,11 +116,9 @@ const webs = {
     selector: {
       price: [
         'div.display-price',
-        //'span.vi-bin-primary-price__main-price'
       ],
       name: [
         'h1.product-title',
-        //'h1[itemprop="name"]'
       ]
     }
   },
@@ -136,5 +147,31 @@ const webs = {
     }
   },
 };
+
+/*
+
+// ADD MORE WEBSITES
+
+// inside "webs" Object
+// write something like this...
+// (as a reference, follow how I wrote)
+
+
+<web Name>: {
+  uri: <base website link>
+  site: <website name>
+  selector: {
+    price: [
+      <price css (unique class/id) selector (querySelector)>
+    ]
+    name: [
+      <price css (unique class/id) selector (querySelector)>
+    ]
+  }
+}
+
+*/
+
+
 
 export default webs

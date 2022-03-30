@@ -107,4 +107,23 @@ export default async function getData(link, transform_country_code) {
   }
 }
 
-// end of the main file
+/*
+
+// FOR TESTING THE PACKAGE
+
+(async()=> {
+  const res = await getData("https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color", "USD");
+  console.log("\n"+ "// async-await method")
+  console.log(res)
+})();
+
+// then-catch
+getData("https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color", "USD").then(res => {
+  console.log("\n" + "// then-catch method")
+  console.log(res)
+  console.log("\n")
+});
+
+*/
+
+  // end of the main file
