@@ -165,7 +165,7 @@ const webs = {
       <price css (unique class/id) selector (querySelector)>
     ]
     name: [
-      <price css (unique class/id) selector (querySelector)>
+      <name css (unique class/id) selector (querySelector)>
     ]
   }
 }
