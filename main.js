@@ -111,6 +111,7 @@ export default async function getData(link, transform_country_code) {
 
 // FOR TESTING THE PACKAGE
 
+// async-await
 (async()=> {
   const res = await getData("https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color", "USD");
   console.log("\n"+ "// async-await method")
@@ -126,4 +127,4 @@ getData("https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win0035
 
 */
 
-  // end of the main file
+// end of the main file
