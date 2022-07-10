@@ -4,7 +4,7 @@ Really don't know how this works..
 */
 
 export default function titleCase(str) {
-  const splitStr = str.toLowerCase().split(" ");
+  const splitStr = str.toLowerCase().split(' ')
 
   // exceptions like be, for, with etc.
   const exceptions = [
@@ -36,13 +36,16 @@ export default function titleCase(str) {
     'up',
     'down',
     'off',
-    'near'];
+    'near',
+  ]
 
-  const result = splitStr.map(word => {
-    const formattedWord = exceptions.indexOf(word) == -1 ?
-    word.charAt(0).toUpperCase() + word.substring(1): word;
-    return formattedWord;
-  });
-  const array = result.join(" ");
+  const result = splitStr.map((word) => {
+    const formattedWord =
+      exceptions.indexOf(word) == -1
+        ? word.charAt(0).toUpperCase() + word.substring(1)
+        : word
+    return formattedWord
+  })
+  const array = result.join(' ')
   return array
 }
