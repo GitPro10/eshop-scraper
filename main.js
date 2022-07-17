@@ -1,4 +1,10 @@
 import axios from 'axios'
+const timeoutAmount = 10 * 1000
+let abortController = new AbortController()
+const timeout = setTimeout(() => {
+  abortController.abort()
+}, timeoutAmount)
+
 import _ from 'lodash'
 
 import titleCase from './utils/titleCase.js' // function used for title case the product name
@@ -16,7 +22,11 @@ function isObject(val) {
 }
 async function getPriceConverted(price, baseCode, code) {
   const { data } = await axios.get(
-    `https://v6.exchangerate-api.com/v6/522bf58887ecce0f6af15527/latest/${baseCode}`,
+    'https://v6.exchangerate-api.com/v6/522bf58887ecce0f6af15527/latest/' +
+      baseCode,
+    {
+      timeout: timeoutAmount,
+    },
   )
 
   const exchangeRate = data.conversion_rates[code]
@@ -62,11 +72,15 @@ export default async function getData(link, transform_country_code) {
   try {
     const propsData = siteProps(link) // receive all returned data in a variable
 
-    if (propsData.IsError) throw new Error('The website is not supported')
+    if (propsData.IsError) throw new Error(propsData.ErrorMsg)
 
-    const { data } = await axios.get(propsData.link, {
+    // getting all resources from page
+    let { data } = await axios.get(propsData.link, {
+      signal: abortController.signal,
       headers: setHeader(headers),
-    }) // getting all resources from page
+      timeout: timeoutAmount,
+    })
+    clearTimeout(timeout)
 
     const dom = new JSDOM(data)
     if (!$(dom, propsData.selectors.priceSelector))
@@ -88,6 +102,7 @@ export default async function getData(link, transform_country_code) {
         currency,
         currencyCode,
       )
+
       price = priceandcurrency_coverted.price_converted
       currency = priceandcurrency_coverted.converted_to_country_code
     }
@@ -108,6 +123,7 @@ export default async function getData(link, transform_country_code) {
       link,
     }
   } catch (err) {
+    if (err.message == 'canceled') err.message = 'Request took too long'
     return {
       IsError: true,
       ErrorMsg: err.message,
@@ -117,9 +133,9 @@ export default async function getData(link, transform_country_code) {
 
 // FOR TESTING THE PACKAGE
 /*
-getData(
-  'https://www.othoa.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color',
-  'USD',
-).then((res) => console.log(res))
+(async()=>{
+  let response = await getData('https://bikroy.com/en/ad/computer-pc-for-sale-rangpur-33', 'USD')
+  console.log(response)
+})()
 */
 // end of the main file

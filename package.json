@@ -5,10 +5,10 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "format": "pnpm run format:fix && pnpm run format:check",
+    "format": "npm run format:fix && npm run format:check",
     "format:check": "prettier --check --ignore-path .gitignore README.md .",
     "format:fix": "prettier --write --ignore-path .gitignore README.md .",
-    "test": "jest --forceExit",
+    "test": "jest",
     "test:watch": "jest --watchAll"
   },
   "babel": {
@@ -19,6 +19,11 @@
         ]
       }
     }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "bin": "./main.js",
   "type": "module",

@@ -10,7 +10,6 @@ let priceminister_link = 'fr.shopping.rakuten.com'
 let ebay_link = 'ebay.com'
 let ebags_link = 'ebags.com'
 let bikroy_link = 'bikroy.com'
-
 // web datas (hardcoded data for every web) like selector, siteName etc.
 const webs = {
   othoba: {

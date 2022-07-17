@@ -16,22 +16,21 @@ This package can be used for getting some important data like **price, currency,
 
 ```js
 import getPrice from 'eshop-scraper'
-
-getPrice(
-  'https://www.othoa.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color',
-  'USD',
-).then((res) => console.log(res))
+(async()=>{
+  let response = await getPrice('https://bikroy.com/en/ad/computer-pc-for-sale-rangpur-33', 'USD')
+  console.log(response)
+})()
 ```
 
 ### Output:
 
 ```console
 {
-  price: 2.13,
+  price: 160.95,
   currency: 'USD',
-  name: "Men's S.s T-shirt Anthra Melange",
-  site: 'Othoba',
-  link: 'https://www.othoba.com/mens-ss-t-shirt-anthra-melange-wc201709l-win00354-color'
+  name: 'Computer Pc',
+  site: 'Bikroy.com',
+  link: 'https://bikroy.com/en/ad/computer-pc-for-sale-rangpur-33'
 }
 ```
 
